@@ -1,11 +1,12 @@
+package Streamy;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Main {
+public class Health {
     static class osoba{
         String jmeno;
         int vek;
@@ -61,6 +62,7 @@ public class Main {
             this.castka = castka;
         }
     }
+
     public static void main(String[] args) throws IOException {
         List<osoba> idk = (List<osoba>) Files.lines(Paths.get("health.csv"))
                 .map(line -> line.split(","))
@@ -71,6 +73,7 @@ public class Main {
                         split[3],
                         Double.parseDouble(split[4])
                 )).toList();
+
 
         //Kolik darcu ma krevni skupinu A- a jsou ve věku od 20 do 50 let?
         idk.stream()
@@ -84,14 +87,14 @@ public class Main {
         double percentage = ((double) countDarci/idk.size()) *100;
         System.out.println(" ti kteri maji skupina ----" + percentage);
 
-        //kolikrát se mezi ženami-dárkyněmi nachází duplicitní záznamy?
+        //Kolikrát se mezi ženami-dárkyněmi nachází duplicitní záznamy?
         Long duplicates = idk.stream()
                 .map(osoba::getJmeno)
                 .distinct()
                 .count();
         System.out.println("duplicitních bylo"+ ( idk.size() - duplicates));
 
-        //vypište do konzole všechny dárce, kteří platili částku pod 10 000 a zároveň jsou z pozivivních krevních skupin (všechny + skupiny)
+        //Vdsypište do konzole všechny dárce, kteří platili částku pod 10 000 a zároveň jsou z pozivivních krevních skupin (všechny + skupiny)
         idk.stream()
                 .filter(s -> s.getCastka()< 10000 && s.getKrevniSkupina().equals("A+") || s.getCastka()< 10000 && s.getKrevniSkupina().equals("B+") || s.getCastka()< 10000 && s.getKrevniSkupina().equals("AB+")||s.getCastka()< 10000 && s.getKrevniSkupina().equals("O+") )
                 .forEach(s -> System.out.println(s.getJmeno()));
