@@ -23,13 +23,14 @@ public class ArithmeticFiles {
                 countTxt++;
             }
         }
-//        System.out.println(filteredFiles);
+       System.out.println(filteredFiles);
 
-        String[] split;
+
         PrintWriter pw = new PrintWriter(new FileWriter("data/priklady_parse_text/out.txt"));
         for (int i = 1; i <= 10; i++) {
             BufferedReader br = new BufferedReader(new FileReader("data/priklady_parse_text/file_" + i + ".txt"));
             String line;
+            String[] split;
             while ((line = br.readLine()) != null) {
                 split = line.split(",");
                 if (!(split[0].startsWith("["))) {
@@ -47,7 +48,7 @@ public class ArithmeticFiles {
 
         System.out.println("Percentage: " + (countTxt / countAll * 100));
 
-        //hleda jendnotlive  typy souboru
+        //hleda jendnotlive  typy souboru a počítá kolik jich je
         Map<String, Long> mapTypes = Arrays.stream(files)
                 .collect(Collectors.groupingBy(l -> l.getName().substring(l.getName().lastIndexOf(".")+1), Collectors.counting()));
         System.out.println(mapTypes);
