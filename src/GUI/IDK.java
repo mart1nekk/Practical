@@ -58,7 +58,7 @@ public class IDK extends JFrame {
         formPanel.add(panelForPohlavi);
 
         // poslední darování
-        JLabel lastDonationLabel = new JLabel("Poslední darování (dd.MM.yyyy)");
+        JLabel lastDonationLabel = new JLabel("Poslední darování");
         lastDonationLabel.setFont(new Font("Arial", Font.BOLD, 17));
         JTextField donationField = new JTextField("01.04.2024");
         formPanel.add(lastDonationLabel);
