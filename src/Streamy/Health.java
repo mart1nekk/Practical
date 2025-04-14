@@ -108,12 +108,14 @@ public class Health {
                 .collect(Collectors.toList());
         System.out.println(darci);
 
-        //spočítejte průměrnou částku, kterou zaplatily pojišťovny při hospitaci všem mužům
+
        /* Map<String,Double> manss = idk.stream()
                 .filter(s -> s.getPohlavi().equals("Male"))
                 .collect(Collectors.groupingBy(osoba::getPohlavi),Collectors.averagingDouble(osoba::getCastka));
         manss.forEach((pohlavi, prumer) -> System.out.println(pohlavi + ": " + prumer));
         */
+
+        //spočítejte průměrnou částku, kterou zaplatily pojišťovny při hospitaci všem mužům
         double prumernaCastka = idk.stream()
                 .filter(s ->s.getPohlavi().equals("Male"))
                 .collect(Collectors.averagingDouble(osoba::getCastka));
