@@ -99,6 +99,14 @@ public class Health {
                 .filter(s -> s.getCastka()< 10000 && s.getKrevniSkupina().equals("A+") || s.getCastka()< 10000 && s.getKrevniSkupina().equals("B+") || s.getCastka()< 10000 && s.getKrevniSkupina().equals("AB+")||s.getCastka()< 10000 && s.getKrevniSkupina().equals("O+") )
                 .forEach(s -> System.out.println(s.getJmeno()));
 
+        //vypište číslo, kolik %žen darovalo
+        long count = idk.stream()
+                .filter(s -> s.getPohlavi().equals("Female"))
+                .count();
+        double procentoZen = ((double) count / idk.size()) * 100;
+        System.out.println("Ženy tvoří " + procentoZen + " % dárců.");
+
+
         //do nové kolekce ulože všechny dárce, kteří mohou darovat člověku s krevní skupinou B+ (to jsou obě 0 a obě B)
         List<osoba> darci = idk.stream()
                 .filter(s -> s.getKrevniSkupina().equals("O+") ||
