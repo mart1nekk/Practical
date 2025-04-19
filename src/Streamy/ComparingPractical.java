@@ -58,6 +58,7 @@ public class ComparingPractical {
                         Integer.parseInt(split[1]),
                         Double.parseDouble(split[2])
                 )).toList();
+
         //top 3 pisnicky
         Songs.stream()
                 .sorted(Comparator.comparing(Song::getRating))

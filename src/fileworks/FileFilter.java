@@ -7,7 +7,7 @@ import java.util.Comparator;
 public class FileFilter {
 
 
-    static ArrayList<File> getFilesByType(String dirPath, String fileType){
+    static ArrayList<File> getFilesByType(String dirPath, String fileType,long minsize,long maxsize){
         ArrayList<File> filteredFiles = new ArrayList<>();
         File wannabeDir = new File(dirPath);
 
@@ -16,7 +16,7 @@ public class FileFilter {
         }
         File[] dirContent = wannabeDir.listFiles();
         for (File file : dirContent){
-            if (file.isFile() && file.getName().endsWith(fileType)){
+            if (file.isFile() && file.getName().endsWith(fileType)&& file.length()<= minsize && file.length()>=maxsize){ //uprava pro filtrovani i dle velikosti
                 filteredFiles.add(file);
             }
         }
@@ -26,6 +26,7 @@ public class FileFilter {
     final static Comparator<File> BY_SIZE = new Comparator<File>() {
         @Override
         public int compare(File o1, File o2) {
+
             return Long.compare(o1.length(), o2.length());
         }
     };
@@ -38,7 +39,7 @@ public class FileFilter {
     }
 
     public static void main(String[] args) {
-        ArrayList<File> data = getFilesByType("data\\clusterfuck", "txt");
+        ArrayList<File> data = getFilesByType("data\\clusterfuck", "txt",500,5000);
         printSortedFiles(data);
     }
 }
