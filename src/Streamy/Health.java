@@ -127,7 +127,7 @@ public class Health {
         double prumernaCastka = idk.stream()
                 .filter(s ->s.getPohlavi().equals("Male"))
                 .collect(Collectors.averagingDouble(osoba::getCastka));
-        System.out.println(prumernaCastka);
+        System.out.println(prumernaCastka); //neslo by to udelat s grouping by???
 
         //spocitejte castku, kterou zaplatily pojišťovny při hospitaci všem ženám
         double celkovaCastka = idk.stream()
