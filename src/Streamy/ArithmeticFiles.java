@@ -3,18 +3,25 @@ package Streamy;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ArithmeticFiles {
 
-    public static void main(String[] args) throws IOException {
+    public static <files> void main(String[] args) throws IOException {
         File[] files = new File("data/priklady_parse_text").listFiles();
 //        System.out.println(Arrays.toString(files));
 
         double countTxt = 0;
         double countAll = files.length;
         ArrayList<File> filteredFiles = new ArrayList<>();
+
+        List<File> filtovano = Arrays.stream(files)
+                .filter(s ->s.getName().startsWith("file_")&& s.getName().endsWith("txt"))
+                .collect(Collectors.toList()).reversed();
+
+
         for (File f : files) {
             if (f.getName().startsWith("file_") && f.getName().endsWith("txt")) {
                 filteredFiles.add(f);
